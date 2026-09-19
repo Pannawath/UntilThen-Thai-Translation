@@ -2,9 +2,9 @@
 
 # Until Then - ม็อดภาษาไทย
 
-[![Version](https://img.shields.io/badge/version-v1.5.3-blue.svg?style=flat-square)](https://github.com/phkprachkung/UntilThen-Thai-Translation/releases)
+[![Version](https://img.shields.io/badge/version-v1.5.4-blue.svg?style=flat-square)](https://github.com/phkprachkung/UntilThen-Thai-Translation/releases)
 [![Progress](https://img.shields.io/badge/main%20story-100%25-brightgreen.svg?style=flat-square)](https://github.com/phkprachkung/UntilThen-Thai-Translation)
-[![DLC Progress](https://img.shields.io/badge/DLC-50%25-orange.svg?style=flat-square)](https://github.com/phkprachkung/UntilThen-Thai-Translation)
+[![DLC Progress](https://img.shields.io/badge/DLC-100%25-brightgreen.svg?style=flat-square)](https://github.com/phkprachkung/UntilThen-Thai-Translation)
 [![Platform](https://img.shields.io/badge/platform-Steam%20(PC)-lightgrey.svg?style=flat-square)](https://store.steampowered.com/app/1574820/Until_Then/)
 [![Downloads](https://img.shields.io/github/downloads/phkprachkung/UntilThen-Thai-Translation/total?color=blueviolet&style=flat-square)](https://github.com/phkprachkung/UntilThen-Thai-Translation/releases)
 
@@ -17,25 +17,49 @@
 ---
 
 ### สถานะการแปล
-* **เนื้อเรื่องหลัก:** 100% (จบเกมแล้ว จะกลับมาเกลาสำนวนอีกรอบหลังแปล DLC ครบ)
-* **เนื้อเรื่อง DLC:** 50% (แปลตอน "วันคืนถิ่น" เสร็จแล้ว, กำลังแปลตอน "จุดประกาย")
-* **เมนูและ UI:** 95% (เมนูในเกม, แอปมือถือ, ข้อความระบบ)
-* **ฟอนต์ภาษาไทย:** 100% (ใช้ Noto Sans Thai สระไม่ลอย)
+* **เนื้อเรื่องหลัก:** 100% (จะมีการแปลใหม่ในเวอร์ชันถัดๆ ไป)
+* **เนื้อเรื่อง DLC:** 100% (แปลครบทั้งตอน "วันคืนถิ่น" และตอน "จุดประกาย" พร้อมฉากเครดิตภาษาไทย อยู่ระหว่างการทดสอบในเกม)
+* **เมนูและ UI:** 100% (เมนูในเกม, แอปมือถือ, ข้อความระบบ, แอปหาคู่ Matchy และ Doogle Photos Reel)
+* **ฟอนต์ภาษาไทย:** 100% (ใช้ Prompt ในบทสนทนา และ FC Iconic ในหน้าเมนู สระไม่ลอย)
 
 ---
 
-### มีอะไรใหม่ใน v1.5.1
-* แปลเนื้อเรื่อง DLC ตอน "วันคืนถิ่น" เสร็จสมบูรณ์
-* แก้บั๊กเกมเด้งตอนกดเข้าหน้าตั้งค่า (Settings)
-* ขยายขนาดหน้าต่างคำเตือนตอนเริ่มเกมให้อ่านง่ายขึ้น
-* ตัดเพลง BGM ออกจากตัวติดตั้งแบบ Lite เพื่อลดขนาดไฟล์
+### มีอะไรใหม่ใน v1.5.4
+* แปลเนื้อเรื่อง DLC บทที่ 2 ตอน "จุดประกาย" เสร็จสมบูรณ์ครบทุกฉาก (ฉาก 2/1 ถึง 2/9b)
+* แปลฉากเครดิต (Credits) ภาษาไทยเต็มรูปแบบ ทั้งเนื้อเรื่องหลักทุกบทและ DLC
+* แปลแอปหาคู่ Matchy ครบ 100% (ตัวละครทั้ง 12 คน) พร้อมแก้ไขบั๊กเกมค้าง
+* แปลแอปรูปภาพ Doogle Photos & Reel รวมถึงข้อความบรรยายภาพความทรงจำ
+* แปลมินิเกม Right Words และข้อความข้ามเวลา "หนึ่งปีต่อมา" ใน DLC
+* ปรับปรุงฟอนต์หน้าเมนูทั้งหมดเป็น FC Iconic คมชัด ขนาดใหญ่ สบายตา
+* ปรับปรุงฟอนต์บทสนทนาและกรอบความคิดในเกมเป็นฟอนต์ Prompt แท้
+* แก้ไขปัญหาภาพลายตารางสีรุ้งในฉาก 3D และเปิดอิสระการปรับแต่งกราฟิก
+* ปรับปรุงตัวติดตั้ง (Installer) ใช้ฟอนต์ FC Iconic ขนาดใหญ่ คมชัด และรองรับระบบตรวจจับ Error อัตโนมัติ
 
 > [!NOTE]
 > **ข้อควรรู้เกี่ยวกับเนื้อเรื่อง DLC:**  
 > ในเนื้อเรื่อง DLC บทที่ 2 ระบบเกมต้นฉบับไม่รองรับการคลิกเมาส์ในหน้าจอมือถือและเมนู ต้องใช้ปุ่มลูกศรบนคีย์บอร์ดหรือจอยเกมในการเลือก
 
 <details>
-<summary>ประวัติการอัปเดตเวอร์ชันเก่า (v1.4.1 - v1.4.3)</summary>
+<summary>ประวัติการอัปเดตเวอร์ชันเก่า (v1.4.1 - v1.5.3)</summary>
+
+<br>
+
+**v1.5.3 (Beta)**
+* เพิ่มระบบสลับภาษา TH/EN แบบเรียลไทม์ในเมนู F9 สำหรับผู้ทดสอบ
+* เพิ่มสไลเดอร์ปรับความเร็วเกม (Game Speed Multiplier 1x - 10x) ในเมนู F9
+* แปลเนื้อเรื่องส่วนเสริม DLC ส่วนที่ 2 เสร็จสิ้น (เริ่มเข้าสู่ช่วงทดสอบ)
+
+**v1.5.2**
+* แปลและเกลาบทภาษาไทยบทที่ 2 ฉากที่ 1 (ฉาก 2/1)
+* คืนค่าภาษาไทยฉาก 5/9 ครบทุกไฟล์ และแยกไฟล์ Void2.inkb สำหรับการทดสอบ
+* ปรับโฉมเมนู F9 Debug UI สไตล์มินิมอล Matte Dark และเพิ่มระบบย่อขยายขนาดหน้าต่าง (70% - 150%)
+* ปรับปรุงระบบตรวจจับข้อผิดพลาดและติดตั้ง .NET Runtime อัตโนมัติในตัวติดตั้ง
+
+**v1.5.1**
+* แปลเนื้อเรื่อง DLC ตอน "วันคืนถิ่น" เสร็จสมบูรณ์
+* แก้บั๊กเกมเด้งตอนกดเข้าหน้าตั้งค่า (Settings)
+* ขยายขนาดหน้าต่างคำเตือนตอนเริ่มเกมให้อ่านง่ายขึ้น
+* ตัดเพลง BGM ออกจากตัวติดตั้งแบบ Lite เพื่อลดขนาดไฟล์
 
 <br>
 
