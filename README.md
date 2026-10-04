@@ -1,4 +1,4 @@
-<div align="center">
+
 
 # Until Then - ม็อดภาษาไทย
 
@@ -101,10 +101,8 @@
 
 ### วิธีติดตั้งม็อด
 
+<img width="2623" height="1493" alt="ดีไซน์ที่ยังไม่ได้ตั้งชื่อ" src="https://github.com/user-attachments/assets/56f02476-0074-40e9-b5d5-dfeb2004c55d" />
 <div align="center">
-  <img width="719" src="https://github.com/user-attachments/assets/ac5d4092-469e-47a2-9c80-ba39b3166de5" />
-</div>
-
 <br>
 
 1. ดาวน์โหลดไฟล์ `UntilThen_ThaiMod.exe` จากหน้า [Releases](https://github.com/phkprachkung/UntilThen-Thai-Translation/releases)
@@ -140,11 +138,10 @@
 
 ### สนับสนุนทีมงาน
 
-หากชอบผลงานและอยากช่วยค่ายาแก้ปวดหลังหรือค่าน้ำชาทีมงานแปล (**DongDib Studio**) สามารถสแกนสนับสนุนได้ที่นี่ครับ:
+หากชอบผลงานและอยากช่วยค่ายาแก้ปวดหลังหรือค่าน้ำชาทีมงานแปล (**DongDib Studio**) สามารถสนับสนุนได้ที่นี่ครับ:
 
-<div align="center">
-  <img width="220" src="https://github.com/user-attachments/assets/654a21a5-876f-486a-8308-3768d5b01b40" />
-  <br><br>
+ https://easydonate.app/prachkung
+  
   หรือช่วยกด <b>Star</b> ที่มุมขวาบนของโปรเจกต์นี้ เพื่อเป็นกำลังใจให้ทีมงานได้เช่นกันครับ
 </div>
 
