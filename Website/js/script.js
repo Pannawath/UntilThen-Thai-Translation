@@ -58,6 +58,7 @@
     })
     .catch(error => {
       console.error(error);
+      versionText.textContent = 'โหลดเวอร์ชันไม่สำเร็จ';
     });
 
   // Mouse Interaction & Parallax State
@@ -909,20 +910,3 @@
   requestAnimationFrame(tick);
 
 })();
-
-const versionText = document.getElementById('mod-version');
-
-fetch('../version.txt')
-  .then(response => {
-    if (!response.ok) {
-      throw new Error(`โหลด version.txt ไม่สำเร็จ: ${response.status}`);
-    }
-    return response.text();
-  })
-  .then(version => {
-    versionText.textContent = `v${version.trim()}`;
-  })
-  .catch(error => {
-    console.error(error);
-    versionText.textContent = 'โหลดเวอร์ชันไม่สำเร็จ';
-  });
