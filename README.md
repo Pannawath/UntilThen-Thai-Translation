@@ -12,8 +12,9 @@
 
 <br>
 
-[![Website Download](https://img.shields.io/badge/WEBSITE_DOWNLOAD-0078D7?style=for-the-badge)](https://pannawath.github.io/UntilThen-Thai-Translation/)
-[![Discord](https://img.shields.io/badge/Discord%20พูดคุย%20%2F%20แจ้งปัญหา-5865F2?style=for-the-badge)](https://discord.gg/hDjNCPaCmu)
+[![Website Download](https://img.shields.io/badge/WEBSITE_DOWNLOAD-2EA043?style=for-the-badge&logo=github&logoColor=white)](https://pannawath.github.io/UntilThen-Thai-Translation/)
+[![Discord](https://img.shields.io/badge/DISCORD_COMMUNITY-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/hDjNCPaCmu)
+
 
 </div>
 
