@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UNTIL THEN - THAI MOD</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800;900&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Instant Fallback Image -->
+  <img id="fallback-img" src="assets/frames/frame-001.jpg" alt="Until Then Scene">
+
+  <!-- High-DPI Canvas Wrapper for 2D Camera Follow -->
+  <div id="canvas-wrapper">
+    <canvas id="game-canvas"></canvas>
+  </div>
+
+  <!-- Dynamic Shadow Overlays (Protects Mark from dark shadow) -->
+  <div id="shadow-right"></div>
+  <div id="shadow-left"></div>
+
+  <!-- Top Navigation (HOME, ABOUT, DOWNLOAD + DISCORD, GITHUB) -->
+  <nav class="top-nav">
+    <div class="nav-links">
+      <button class="nav-btn active" id="nav-home" onclick="goToSection('home')">HOME</button>
+      <button class="nav-btn" id="nav-about" onclick="goToSection('about')">ABOUT</button>
+      <button class="nav-btn" id="nav-download" onclick="goToSection('download')">DOWNLOAD</button>
+    </div>
+
+    <!-- Top Right Socials: DISCORD & GITHUB -->
+    <div class="nav-socials">
+      <a href="https://discord.gg/yMtJUkaTx" target="_blank" rel="noopener noreferrer" class="social-nav-btn discord-btn" title="Discord Community">
+        <i class="fa-brands fa-discord"></i>
+        <span>DISCORD</span>
+      </a>
+      <a href="https://github.com/Pannawath/UntilThen-Thai-Translation/releases" target="_blank" rel="noopener noreferrer" class="social-nav-btn github-btn" title="GitHub Repository">
+        <i class="fa-brands fa-github"></i>
+        <span>GITHUB</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Interactive Screens -->
+  <div class="content-layer">
+
+    <!-- PANEL 1: HOME (Mark on Left, Text on Right) -->
+    <div class="screen-panel active" id="panel-home">
+      <div class="home-box">
+        <h1 class="home-title">UNTIL THEN<br>THAI MOD</h1>
+        <div class="home-divider"></div>
+        <button class="btn-readmore" onclick="goToSection('about')">
+          <span>READ MORE</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- PANEL 2: ABOUT (Mark on Left/Center, White Text on Right) -->
+    <div class="screen-panel" id="panel-about">
+      <div class="about-box">
+        <h2 class="about-title">ABOUT</h2>
+        <p class="about-desc">
+          Until Then ม็อดภาษาไทย แปลเนื้อเรื่องหลักและบทสนทนาตัวละครทั้งหมดอย่างประณีต ถ่ายทอดอารมณ์ มิตรภาพ และความทรงจำในโลกที่บิดเบี้ยว พร้อมปรับฟอนต์คมชัดอ่านง่ายและแก้ปัญหาบั๊กทั้งหมดในเวอร์ชันล่าสุด
+        </p>
+        <button class="btn-readmore" onclick="goToSection('download')">
+          <span>DOWNLOAD</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- PANEL 3: DOWNLOAD (Mark on Right, Text on Left) -->
+    <div class="screen-panel" id="panel-download">
+      <div class="download-box">
+        <h2 class="download-title">DOWNLOAD</h2>
+        <div class="download-meta">
+          <span><i class="fa-solid fa-file-zipper"></i> ขนาด ~21 MB</span>
+          <span><i class="fa-brands fa-windows"></i> PC (Windows)</span>
+          <span><i class="fa-solid fa-tag"></i> <span id="mod-version">v0.0.0</span></span>
+        </div>
+        <a href="https://github.com/Pannawath/UntilThen-Thai-Translation/releases/latest/download/UntilThen_ThaiMod.exe" class="btn-download-main">
+           <i class="fa-solid fa-download"></i> DOWNLOAD
+        </a>
+        <div class="install-box">
+          <div class="install-box-title"><i class="fa-solid fa-circle-info"></i> วิธีติดตั้งแบบย่อ</div>
+          <div>1. ดาวน์โหลดไฟล์ที่ต้องการ</div>
+          <div>2. เปิดโปรเเกรมเพื่อติดตั้งมอด</div>
+          <div>3. เข้าเล่นเกม เเละไปเปลี่ยนภาษาไทย</div>
+        </div>
+
+        <!-- Scroll down hint button to open White Page -->
+        <div class="scroll-down-hint" onclick="openWhiteSheet('sec-guide')">
+          <span>อ่านเพิ่มเติม</span>
+          <i class="fa-solid fa-angles-down bounce-arrow"></i>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Vertical Scroll Progress Track -->
+  <div class="scroll-progress-track" id="scroll-track" onclick="onProgressTrackClick(event)">
+    <div class="scroll-progress-thumb" id="scroll-thumb"></div>
+  </div>
+
+  <!-- Custom Right-Click Context Menu (GUIDE, HOW FIX BUG, CREDIT, DONATE) -->
+  <div id="custom-context-menu">
+    <div class="context-menu-header">MENU</div>
+    <div class="context-menu-item" onclick="onContextSelect('sec-guide')">
+      <span class="cm-icon"><i class="fa-solid fa-book-open"></i></span> GUIDE
+    </div>
+    <div class="context-menu-item" onclick="onContextSelect('sec-bugs')">
+      <span class="cm-icon"><i class="fa-solid fa-screwdriver-wrench"></i></span> HOW FIX BUG
+    </div>
+    <div class="context-menu-item" onclick="onContextSelect('sec-credit')">
+      <span class="cm-icon"><i class="fa-solid fa-users"></i></span> CREDIT
+    </div>
+    <div class="context-menu-item" onclick="onContextSelect('sec-donate')">
+      <span class="cm-icon"><i class="fa-solid fa-mug-hot"></i></span> DONATE
+    </div>
+  </div>
+
+  <!-- White Slide-Up Page (Knowledge Base, Bug Fixes & Credits - Continuous Full Screen) -->
+  <div id="white-sheet">
+    <div class="sheet-container">
+
+      <!-- LEFT COLUMN: Sticky Vertical Timeline Nav (Exact match to user drawing) -->
+      <aside class="sheet-timeline-nav">
+        <div class="timeline-track-line"></div>
+
+        <!-- 1. GUIDE -->
+        <div class="timeline-item active" id="nav-item-guide" onclick="scrollToSection('sec-guide')">
+          <div class="timeline-dot"></div>
+          <div class="timeline-label">GUIDE</div>
+          <div class="timeline-subitems">
+            <div class="timeline-subitem active-sub" data-target="sec-guide-install" onclick="event.stopPropagation(); scrollToSection('sec-guide-install');">
+              <span class="sub-indicator"></span>ดาวน์โหลดไฟล์ม็อด
+            </div>
+            <div class="timeline-subitem" data-target="sec-guide-steam" onclick="event.stopPropagation(); scrollToSection('sec-guide-steam');">
+              <span class="sub-indicator"></span>ที่อยู่โฟลเดอร์ Steam
+            </div>
+            <div class="timeline-subitem" data-target="sec-guide-launch" onclick="event.stopPropagation(); scrollToSection('sec-guide-launch');">
+              <span class="sub-indicator"></span>วิธีเริ่มเล่นเกม
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. HOW FIX BUG -->
+        <div class="timeline-item" id="nav-item-bugs" onclick="scrollToSection('sec-bugs')">
+          <div class="timeline-dot"></div>
+          <div class="timeline-label">HOW FIX BUG</div>
+          <div class="timeline-subitems">
+            <div class="timeline-subitem" data-target="sec-bug-cat1" onclick="event.stopPropagation(); scrollToSection('sec-bug-cat1');">
+              <span class="sub-indicator"></span>1. ติดตั้ง &amp; ตัวรันม็อด
+            </div>
+            <div class="timeline-subitem" data-target="sec-bug-cat2" onclick="event.stopPropagation(); scrollToSection('sec-bug-cat2');">
+              <span class="sub-indicator"></span>2. กราฟิก &amp; ฟอนต์
+            </div>
+            <div class="timeline-subitem" data-target="sec-bug-cat3" onclick="event.stopPropagation(); scrollToSection('sec-bug-cat3');">
+              <span class="sub-indicator"></span>3. เนื้อเรื่อง &amp; DLC
+            </div>
+            <div class="timeline-subitem" data-target="sec-bug-contact" onclick="event.stopPropagation(); scrollToSection('sec-bug-contact');">
+              <span class="sub-indicator"></span>ช่องทางติดต่อ &amp; แจ้งปัญหา
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. CREDIT -->
+        <div class="timeline-item" id="nav-item-credit" onclick="scrollToSection('sec-credit')">
+          <div class="timeline-dot"></div>
+          <div class="timeline-label">CREDIT</div>
+          <div class="timeline-subitems">
+            <div class="timeline-subitem" data-target="sec-credit-dev" onclick="event.stopPropagation(); scrollToSection('sec-credit-dev');">
+              <span class="sub-indicator"></span>Developer
+            </div>
+            <div class="timeline-subitem" data-target="sec-credit-trans" onclick="event.stopPropagation(); scrollToSection('sec-credit-trans');">
+              <span class="sub-indicator"></span>Translations
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. DONATE (from user drawing: donate) -->
+        <div class="timeline-item" id="nav-item-donate" onclick="scrollToSection('sec-donate')">
+          <div class="timeline-dot"></div>
+          <div class="timeline-label">DONATE</div>
+          <div class="timeline-subitems">
+            <div class="timeline-subitem active-sub" data-target="sec-donate-promptpay" onclick="event.stopPropagation(); scrollToSection('sec-donate-promptpay');">
+              <span class="sub-indicator"></span>EasyDonate
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- RIGHT COLUMN: Continuous Long Document Sections -->
+      <main class="sheet-content-panel">
+
+        <!-- SECTION 1: GUIDE -->
+        <section class="sheet-doc-section" id="sec-guide">
+          <div class="section-badge-tag"><i class="fa-solid fa-book-open"></i> CHAPTER 01</div>
+          <h2 class="section-heading">GUIDE - คู่มือการติดตั้ง</h2>
+          <p class="section-subtitle">ขั้นตอนการลงม็อดภาษาไทยสำหรับ Until Then บนระบบ Steam (PC) อย่างละเอียด</p>
+
+          <!-- STEP 1 -->
+          <div class="sheet-doc-card guide-card" id="sec-guide-install">
+            <div class="guide-card-header">
+              <div class="guide-step-badge">
+                <span class="step-num">01</span>
+                <div class="step-icon-wrap"><i class="fa-solid fa-cloud-arrow-down"></i></div>
+              </div>
+              <div class="guide-step-title-wrap">
+                <span class="guide-tag">DOWNLOAD FILE</span>
+                <h3 class="guide-card-title">ดาวน์โหลดและแตกไฟล์ม็อด</h3>
+              </div>
+            </div>
+            <div class="guide-card-body">
+              <p>กดปุ่ม <strong>DOWNLOAD</strong> ที่หน้าหลักเพื่อรับไฟล์ zip ม็อดภาษาไทย จากนั้นทำการแตกไฟล์ (Extract Here) เพื่อรับโฟลเดอร์สำหรับติดตั้ง</p>
+              <div class="file-spec-pill">
+                <i class="fa-solid fa-file-zipper"></i>
+                <span class="file-name">UntilThen_ThaiMod.exe</span>
+                <span class="file-size-tag">~21 MB</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 2 -->
+          <div class="sheet-doc-card guide-card" id="sec-guide-steam">
+            <div class="guide-card-header">
+              <div class="guide-step-badge">
+                <span class="step-num">02</span>
+                <div class="step-icon-wrap"><i class="fa-brands fa-steam"></i></div>
+              </div>
+              <div class="guide-step-title-wrap">
+                <span class="guide-tag">STEAM DIRECTORY</span>
+                <h3 class="guide-card-title">ค้นหาโฟลเดอร์เกมในระบบ Steam</h3>
+              </div>
+            </div>
+            <div class="guide-card-body">
+              <p>เปิดโปรแกรม <strong>Steam</strong> ➔ คลิกขวาที่เกม <strong>Until Then</strong> ➔ เลือก <strong>Manage (จัดการ)</strong> ➔ <strong>Browse local files (เปิดดูไฟล์ภายในเครื่อง)</strong> หรือคัดลอกที่อยู่ด้านล่างนี้:</p>
+              
+              <div class="terminal-box">
+                <div class="terminal-header">
+                  <div class="terminal-dots">
+                    <span class="dot-red"></span>
+                    <span class="dot-yellow"></span>
+                    <span class="dot-green"></span>
+                  </div>
+                  <span class="terminal-title"><i class="fa-solid fa-folder-tree"></i> Windows Steam Local Directory</span>
+                  <button class="terminal-copy-btn" id="btn-copy-path" onclick="copyPathToClipboard(event)">
+                    <i class="fa-solid fa-copy"></i> <span>คัดลอก Path</span>
+                  </button>
+                </div>
+                <div class="terminal-body">
+                  <code id="steam-path-text">C:\Program Files (x86)\Steam\steamapps\common\Until Then\</code>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 3 -->
+          <div class="sheet-doc-card guide-card" id="sec-guide-launch">
+            <div class="guide-card-header">
+              <div class="guide-step-badge">
+                <span class="step-num">03</span>
+                <div class="step-icon-wrap"><i class="fa-solid fa-gamepad"></i></div>
+              </div>
+              <div class="guide-step-title-wrap">
+                <span class="guide-tag">INSTALL & LAUNCH</span>
+                <h3 class="guide-card-title">วางไฟล์ทับและเริ่มเล่นเกม</h3>
+              </div>
+            </div>
+            <div class="guide-card-body">
+              <p>คัดลอกไฟล์ทั้งหมดจากโฟลเดอร์ม็อดไปวางทับในโฟลเดอร์เกม หากมีข้อความแจ้งเตือนให้กดยืนยัน <em>Replace the files in the destination</em> แล้วเปิดเกมเข้าเล่นได้ทันที</p>
+              
+              <div class="feature-checklist">
+                <div class="check-pill">
+                  <i class="fa-solid fa-circle-check"></i> ภาษาไทยจะแสดงผลทันทีโดยอัตโนมัติ
+                </div>
+                <div class="check-pill">
+                  <i class="fa-solid fa-circle-check"></i> ไม่ส่งผลกระทบต่อ Save Game เดิม
+                </div>
+                <div class="check-pill">
+                  <i class="fa-solid fa-circle-check"></i> ปลดล็อก Achievement บน Steam ได้ตามปกติ
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 2: HOW FIX BUG (DOCUMENTATION FORMAT) -->
+        <section class="sheet-doc-section" id="sec-bugs">
+          <div class="doc-header-banner">
+            <div class="doc-meta-badge"><i class="fa-solid fa-file-lines"></i> DOCUMENTATION &amp; TROUBLESHOOTING</div>
+            <h2 class="doc-main-title">[วิธีแก้ปัญหาที่พบบ่อย] Until Then - ม็อดภาษาไทย</h2>
+            <div class="doc-intro-callout">
+              <div class="callout-icon"><i class="fa-solid fa-circle-info"></i></div>
+              <div class="callout-body">
+                <p class="callout-main">ห้องนี้รวบรวมวิธีแก้ปัญหา ข้อสงสัย และบั๊กต่างๆ ที่พบบ่อยจากการใช้งานม็อดแปลไทย หากพบปัญหาในการเล่นหรือการติดตั้ง สามารถค้นหาวิธีแก้ไขตามหัวข้อด้านล่างนี้ได้ทันทีครับ</p>
+                <div class="doc-version-tag"><i class="fa-solid fa-code-commit"></i> รองรับม็อดเวอร์ชัน v1.5.4 Hotfix (ล่าสุด)</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- หมวดที่ 1: ปัญหาการติดตั้งและตัวรันม็อด -->
+          <div class="doc-category-block" id="sec-bug-cat1">
+            <div class="doc-category-header">
+              <span class="cat-num-badge">หมวดที่ 1</span>
+              <h3 class="cat-title">ปัญหาการติดตั้งและตัวรันม็อด</h3>
+            </div>
+
+            <!-- Q1 -->
+            <article class="doc-qa-card" id="qa-q1">
+              <h4 class="doc-qa-title">
+                <span class="doc-q-pill">Q1</span>
+                ดับเบิ้ลคลิกเปิดตัวติดตั้ง .exe แล้วหน้าต่างปิดตัวเองทันที หรือไม่แสดงหน้าต่างขึ้นมา
+              </h4>
+              <div class="doc-qa-body">
+                <div class="doc-field">
+                  <span class="doc-field-label cause"><i class="fa-solid fa-circle-exclamation"></i> สาเหตุ</span>
+                  <ul class="doc-bullet-list">
+                    <li>เครื่องยังไม่ได้ติดตั้ง <strong>.NET Desktop Runtime เวอร์ชัน 9.0</strong> (มักพบบน Windows รุ่นเก่าหรือเครื่องที่ลงวินโดวส์ใหม่)</li>
+                    <li>โดนระบบความปลอดภัยของ Windows (Smart App Control) หรือโปรแกรม Anti-virus ปิดกั้นการทำงาน</li>
+                  </ul>
+                </div>
+                <div class="doc-field">
+                  <span class="doc-field-label solution"><i class="fa-solid fa-circle-check"></i> วิธีแก้</span>
+                  <ol class="doc-numbered-list">
+                    <li>
+                      ดาวน์โหลดและติดตั้ง <strong>Microsoft .NET 9.0 Desktop Runtime (x64)</strong> ได้ฟรีจากเว็บไซต์ทางการของ Microsoft:
+                      <a href="https://dotnet.microsoft.com/download/dotnet/9.0" target="_blank" rel="noopener" class="doc-ext-link">
+                        <span>dotnet.microsoft.com/download/dotnet/9.0</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                      </a>
+                    </li>
+                    <li>หากมีหน้าต่างสีฟ้า <em>Windows protected your PC</em> ให้คลิก <strong>"More info"</strong> แล้วเลือก <strong>"Run anyway"</strong> หรือใช้ตัวติดตั้งเวอร์ชัน Lite ที่มีขนาดกะทัดรัดและโหลดเร็วกว่า</li>
+                    <li>
+                      <strong>หรือใช้คำสั่ง PowerShell ปลดล็อกทันที (ไม่ต้องปิด Antivirus):</strong>
+                      <div class="terminal-box" style="margin-top: 0.8rem;">
+                        <div class="terminal-header">
+                          <div class="terminal-dots">
+                            <span class="dot-red"></span>
+                            <span class="dot-yellow"></span>
+                            <span class="dot-green"></span>
+                          </div>
+                          <span class="terminal-title">Windows PowerShell — Unblock-File</span>
+                          <button class="terminal-copy-btn" onclick="copyFromElement('cmd-q1-unblock', this)">
+                            <i class="fa-solid fa-copy"></i> <span>คัดลอกคำสั่ง</span>
+                          </button>
+                        </div>
+                        <div class="terminal-body">
+                          <code id="cmd-q1-unblock">powershell -ExecutionPolicy Bypass -Command "Get-ChildItem -Recurse | Unblock-File"</code>
+                        </div>
+                      </div>
+                    </li>
+                  </ol>
+                </div>
+              </div>
+            </article>
+
+            <!-- Q2 -->
+            <article class="doc-qa-card" id="qa-q2">
+              <h4 class="doc-qa-title">
+                <span class="doc-q-pill">Q2</span>
+                ตัวติดตั้งแจ้งเตือน Error Code: -2147450730 หรือ -1073740286 ขณะกำลังแพ็กไฟล์
+              </h4>
+              <div class="doc-qa-body">
+                <div class="doc-field">
+                  <span class="doc-field-label cause"><i class="fa-solid fa-circle-exclamation"></i> สาเหตุ</span>
+                  <p>โปรแกรมแพ็กไฟล์เกม (<code>GodotPCKExplorer</code>) ขาดคอมโพเนนต์ .NET 9.0 หรือไฟล์คอมโพเนนต์ .NET ในเครื่องเสียหาย</p>
+                </div>
+                <div class="doc-field">
+                  <span class="doc-field-label solution"><i class="fa-solid fa-circle-check"></i> วิธีแก้</span>
+                  <ul class="doc-bullet-list">
+                    <li>ในตัวติดตั้งเวอร์ชัน <strong>v1.5.4</strong> ระบบมีปุ่มช่วยดาวน์โหลดและซ่อมแซม .NET ให้อัตโนมัติ ให้กด <strong>"ตกลง"</strong> เพื่อเริ่มการซ่อมแซม</li>
+                    <li>หากยังไม่ผ่าน ให้ติดตั้ง <em>.NET 9.0 Desktop Runtime</em> แบบ Manual ตามลิงก์ในข้อ Q1 แล้วรีสตาร์ตเครื่องหนึ่งครั้ง</li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+
+            <!-- Q3 -->
+            <article class="doc-qa-card" id="qa-q3">
+              <h4 class="doc-qa-title">
+                <span class="doc-q-pill">Q3</span>
+                ตัวเกมบน Steam มีการอัปเดตแพตช์ใหม่ หรือเผลอกด "ตรวจสอบความสมบูรณ์ของไฟล์เกม" แล้วภาษาไทยหาย
+              </h4>
+              <div class="doc-qa-body">
+                <div class="doc-field">
+                  <span class="doc-field-label cause"><i class="fa-solid fa-circle-exclamation"></i> สาเหตุ</span>
+                  <p>ทาง Steam จะดาวน์โหลดไฟล์ <code>UntilThen.pck</code> ดั้งเดิมจากเซิร์ฟเวอร์มาเขียนทับไฟล์ม็อด</p>
+                </div>
+                <div class="doc-field">
+                  <span class="doc-field-label solution"><i class="fa-solid fa-circle-check"></i> วิธีแก้</span>
+                  <p>เปิดโปรแกรมตัวติดตั้งม็อด <code>UntilThen_ThaiMod.exe</code> แล้วกดปุ่ม <strong>"INSTALL MOD"</strong> ใหม่อีกครั้งได้ทันที ไม่ต้องโหลดไฟล์เกมใหม่</p>
+                </div>
+              </div>
+            </article>
+
+            <!-- Q4 -->
+            <article class="doc-qa-card" id="qa-q4">
+              <h4 class="doc-qa-title">
+                <span class="doc-q-pill">Q4</span>
+                เล่นบนเครื่อง Steam Deck, Linux หรือ macOS ต้องติดตั้งอย่างไร?
+              </h4>
+              <div class="doc-qa-body">
+                <div class="doc-field">
+                  <span class="doc-field-label solution"><i class="fa-solid fa-circle-check"></i> วิธีแก้บน Steam Deck (Desktop Mode):</span>
+                  <ol class="doc-numbered-list">
+                    <li>เปิดโฟลเดอร์เกม Until Then ผ่าน Steam ➔ <strong>Manage ➔ Browse local files</strong></li>
+                    <li>ดาวน์โหลดไฟล์ <code>UntilThen_ThaiMod_Story.zip</code> หรือนำไฟล์ <code>UntilThen.pck</code> ที่แพ็กภาษาไทยเสร็จแล้วจาก PC มาวางทับไฟล์เดิมในเครื่อง Steam Deck</li>
+                    <li>หรือใช้ <strong>Proton Tricks</strong> เพื่อรันตัวติดตั้ง <code>UntilThen_ThaiMod.exe</code> บน Steam Deck ได้โดยตรง</li>
+                  </ol>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- หมวดที่ 2: ปัญหากราฟิก ภาพแตก และฟอนต์ -->
+          <div class="doc-category-block" id="sec-bug-cat2">
+            <div class="doc-category-header">
+              <span class="cat-num-badge">หมวดที่ 2</span>
+              <h3 class="cat-title">ปัญหากราฟิก ภาพแตก และฟอนต์</h3>
+            </div>
+
+            <!-- Q7 -->
+            <article class="doc-qa-card" id="qa-q7">
+              <h4 class="doc-qa-title">
+                <span class="doc-q-pill">Q7</span>
+                ภาพในฉาก 3D แตกเป็นลายตารางสีรุ้ง (Rainbow Static Noise) หรือภาพค้างระหว่างเปลี่ยนฉาก
+              </h4>
+              <div class="doc-qa-body">
+                <div class="doc-field">
+                  <span class="doc-field-label cause"><i class="fa-solid fa-circle-exclamation"></i> สาเหตุ</span>
+                  <p>บั๊กไดรเวอร์การ์ดจอ (โดยเฉพาะ Nvidia ซีรีส์ GTX 10xx / VRAM 4GB) เมื่อเปิดเอฟเฟกต์สะท้อนแสง VoxelGI สองชั้นพร้อมกัน</p>
+                </div>
+                <div class="doc-field">
+                  <span class="doc-field-label solution"><i class="fa-solid fa-circle-check"></i> วิธีแก้</span>
+                  <ul class="doc-bullet-list">
+                    <li>ม็อดเวอร์ชัน <strong>v1.5.4</strong> มีระบบดักปิดการสะท้อนแสงซ้อนอัตโนมัติ ไม่ทำให้ภาพแตกหรือค้างอีกต่อไป</li>
+                    <li>ผู้เล่นสามารถเข้าไปปรับตั้งค่ากราฟิกในการตั้งค่าได้อิสระเต็มที่ หากการ์ดจอมี VRAM น้อย แนะนำปรับ <strong>Bokeh Depth of Field</strong> และ <strong>Ambient Occlusion</strong> ลงมาที่ระดับ Medium หรือ High เพื่อความลื่นไหล</li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+
+            <!-- Q8 -->
+            <article class="doc-qa-card" id="qa-q8">
+              <h4 class="doc-qa-title">
+                <span class="doc-q-pill">Q8</span>
+                ตัวหนังสือในก้อนความคิด (Thought Bubble) หรือกล่องคำพูดเปลี่ยนเป็นฟอนต์อื่น สระลอย หรือเป็นสี่เหลี่ยม
+              </h4>
+              <div class="doc-qa-body">
+                <div class="doc-field">
+                  <span class="doc-field-label cause"><i class="fa-solid fa-circle-exclamation"></i> สาเหตุ</span>
+                  <p>ไฟล์ฟอนต์ของระบบความคิดไม่สมบูรณ์ หรือตัวเกมไม่โหลดแม็ปปิ้งฟอนต์</p>
+                </div>
+                <div class="doc-field">
+                  <span class="doc-field-label solution"><i class="fa-solid fa-circle-check"></i> วิธีแก้</span>
+                  <p>ใช้ม็อดเวอร์ชัน <strong>v1.5.4</strong> ตัวเต็มทางการ ซึ่งกู้คืนไฟล์แม็ปปิ้งฟอนต์ Prompt แท้ (<code>DiarioDeAndy</code>) เข้าสู่ระบบเรียบร้อยแล้ว ติดตั้งใหม่ผ่านตัวติดตั้งแล้วเข้าเกม ตัวหนังสือจะกลับมาคมชัดสวยงาม 100%</p>
+                </div>
+              </div>
+            </article>
+
+            <!-- Q9 -->
+            <article class="doc-qa-card" id="qa-q9">
+              <h4 class="doc-qa-title">
+                <span class="doc-q-pill">Q9</span>
+                ข้อความบทสนทนาล้นขอบจอ หรือกล่องคำพูดตกขอบ
+              </h4>
+              <div class="doc-qa-body">
+                <div class="doc-field">
+                  <span class="doc-field-label cause"><i class="fa-solid fa-circle-exclamation"></i> สาเหตุ</span>
+                  <p>ตัวเกมใช้มุมกล้อง 3D ที่ตัวละครยืนชิดขอบจอซ้ายหรือขวาเกินไป ทำให้กล่องข้อความเดิมไม่ปรับตามมุมกล้อง</p>
+                </div>
+                <div class="doc-field">
+                  <span class="doc-field-label solution"><i class="fa-solid fa-circle-check"></i> วิธีแก้</span>
+                  <p>ทีมงานได้ทำการปรับแบ่งบรรทัดด้วย <strong>ThaiWordBreaker Engine</strong> และปรับระยะความกว้างในม็อดเวอร์ชัน <strong>v1.5.4</strong> ครบทุกฉากแล้ว หากยังพบประโยคใดที่ตกขอบ สามารถแคปภาพหน้าจอพร้อมชื่อฉากส่งมาแจ้งใน Discord ห้องแจ้งปัญหาได้เลยครับ</p>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- หมวดที่ 3: ปัญหาขณะเล่นเนื้อเรื่องและ DLC -->
+          <div class="doc-category-block" id="sec-bug-cat3">
+            <div class="doc-category-header">
+              <span class="cat-num-badge">หมวดที่ 3</span>
+              <h3 class="cat-title">ปัญหาขณะเล่นเนื้อเรื่องและ DLC (Gameplay &amp; DLC)</h3>
+            </div>
+
+            <!-- Q10 -->
+            <article class="doc-qa-card" id="qa-q10">
+              <h4 class="doc-qa-title">
+                <span class="doc-q-pill">Q10</span>
+                เล่นเนื้อเรื่อง DLC บทที่ 2 แล้วคลิกเมาส์บนหน้าจอมือถือหรือเมนูไม่ได้
+              </h4>
+              <div class="doc-qa-body">
+                <div class="doc-field">
+                  <span class="doc-field-label cause"><i class="fa-solid fa-circle-exclamation"></i> สาเหตุ</span>
+                  <p>เป็นข้อจำกัดจากตัวเกมต้นฉบับของผู้พัฒนา (Polychroma Games) ที่ไม่ได้เขียนระบบคลิกเมาส์ในหน้าจอดังกล่าวสำหรับ DLC บทที่ 2</p>
+                </div>
+                <div class="doc-field">
+                  <span class="doc-field-label solution"><i class="fa-solid fa-circle-check"></i> วิธีแก้</span>
+                  <p>ให้ใช้ <strong>"ปุ่มลูกศรบนคีย์บอร์ด (Arrow Keys)"</strong> หรือปุ่มลูกศรบนจอยเกม (D-pad) ในการเลื่อนเลือกเมนู และกด <strong>Enter</strong> หรือ <strong>Spacebar</strong> เพื่อยืนยัน <em>(เนื้อเรื่องหลักและ DLC บทที่ 1 ใช้เมาส์ได้ปกติ)</em></p>
+                </div>
+              </div>
+            </article>
+
+            <!-- Q11 -->
+            <article class="doc-qa-card" id="qa-q11">
+              <h4 class="doc-qa-title">
+                <span class="doc-q-pill">Q11</span>
+                เปิดแอปหาคู่ Matchy ในบทที่ 2 ฉากที่ 1 แล้วเกมเด้งหลุดทันที
+              </h4>
+              <div class="doc-qa-body">
+                <div class="doc-field">
+                  <span class="doc-field-label cause"><i class="fa-solid fa-circle-exclamation"></i> สาเหตุ</span>
+                  <p>โครงสร้างไฟล์ฐานข้อมูลแอปไม่ตรงกับเอนจินของตัวเกม</p>
+                </div>
+                <div class="doc-field">
+                  <span class="doc-field-label solution"><i class="fa-solid fa-circle-check"></i> วิธีแก้</span>
+                  <p>อัปเดตม็อดเป็นเวอร์ชัน <strong>v1.5.4</strong> ขึ้นไป ปัญหานี้ได้รับการแก้ไขโครงสร้าง JSON ครบ 100% และแปลข้อมูลโปรไฟล์ตัวละครครบทั้ง 12 คนแล้ว สามารถเปิดแอปเล่นมินิเกมได้ปกติ</p>
+                </div>
+              </div>
+            </article>
+
+            <!-- Q12 -->
+            <article class="doc-qa-card" id="qa-q12">
+              <h4 class="doc-qa-title">
+                <span class="doc-q-pill">Q12</span>
+                เกมจอดำ ค้าง หรือไม่เล่นบทสนทนาต่อ (เช่น ฉากเปียโน, บทที่ 4 ฉากซื้อเสื้อ, ลูปต่างๆ)
+              </h4>
+              <div class="doc-qa-body">
+                <div class="doc-field">
+                  <span class="doc-field-label cause"><i class="fa-solid fa-circle-exclamation"></i> สาเหตุ</span>
+                  <p>เกิดจากอักขระช่องว่างพิเศษ (NBSP) ในไฟล์แปลเวอร์ชันเก่าที่ทำให้เอนจิน Ink ประมวลผลค้างและไม่ปล่อย Event Trigger ข้ามฉาก</p>
+                </div>
+                <div class="doc-field">
+                  <span class="doc-field-label solution"><i class="fa-solid fa-circle-check"></i> วิธีแก้</span>
+                  <ul class="doc-bullet-list">
+                    <li>อัปเดตม็อดเป็นเวอร์ชัน <strong>v1.5.4</strong> ซึ่งทีมงานได้ทำความสะอาดและตรวจสอบอักขระ NBSP ทั่วทั้งโปรเจกต์ 100% แล้ว อาการค้างจะหายเป็นปกติ</li>
+                    <li><strong>วิธีแก้ปัญหาชั่วคราว (ไม่ต้องลงม็อดใหม่):</strong> กด <code>ESC</code> เข้าไปที่ "การตั้งค่า" (Settings) ในเกม แล้วสลับเปลี่ยนภาษาเป็น <strong>English</strong> เฉพาะฉากนี้ก่อน เมื่อเล่นผ่านฉากนั้นจนเกมขึ้น Auto-Save ค่อยสลับภาษากลับมาเป็น <strong>ไทย</strong> เพื่อเล่นต่อตามเดิม</li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- ช่องทางการติดต่อและแจ้งปัญหาเพิ่มเติม -->
+          <div class="doc-category-block" id="sec-bug-contact">
+            <div class="doc-category-header">
+              <span class="cat-num-badge support-badge">SUPPORT</span>
+              <h3 class="cat-title">ช่องทางการติดต่อและแจ้งปัญหาเพิ่มเติม</h3>
+            </div>
+            <div class="doc-support-wrapper">
+              <p class="support-lead-text">หากพบเจอบั๊ก คำผิด หรือปัญหาอื่นๆ ที่ไม่อยู่ในรายการนี้ สามารถแจ้งทีมงานได้ทันทีผ่าน 2 ช่องทางหลัก</p>
+              <div class="support-cards-grid">
+                <a href="https://discord.gg/3GJnYuZZ8" target="_blank" rel="noopener" class="support-box discord-channel">
+                  <div class="support-box-icon"><i class="fa-brands fa-discord"></i></div>
+                  <div class="support-box-content">
+                    <span class="support-channel-tag">COMMUNITY DISCORD</span>
+                    <h4>แจ้งใน Discord</h4>
+                    <p>ห้อง <code>#พูดคุย-สอบถาม</code> หรือ <code>#แจ้งปัญหา</code></p>
+                  </div>
+                  <i class="fa-solid fa-arrow-up-right-from-square support-ext-icon"></i>
+                </a>
+                <a href="https://github.com/phkprachkung/UntilThen-Thai-Translation/issues" target="_blank" rel="noopener" class="support-box github-channel">
+                  <div class="support-box-icon"><i class="fa-brands fa-github"></i></div>
+                  <div class="support-box-content">
+                    <span class="support-channel-tag">OFFICIAL REPO</span>
+                    <h4>GitHub Issues</h4>
+                    <p>แจ้งบั๊กอย่างเป็นทางการ พร้อมติดตามประวัติแก้ไข</p>
+                  </div>
+                  <i class="fa-solid fa-arrow-up-right-from-square support-ext-icon"></i>
+                </a>
+              </div>
+              <div class="support-note-box">
+                <i class="fa-solid fa-circle-exclamation note-icon"></i>
+                <span>รบกวนแนบภาพหน้าจอ และระบุบท/ฉากที่พบ เพื่อให้ทีมงานตรวจสอบและแก้ไขในแพตช์ถัดไปได้รวดเร็วที่สุดครับ ขอบคุณทุกคนที่ร่วมสนับสนุนและเล่นม็อดภาษาไทยครับ!</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 3: CREDIT (HIGH-END CUSTOMIZABLE TEAM PORTFOLIO) -->
+        <section class="sheet-doc-section" id="sec-credit">
+          <div class="section-badge-tag"><i class="fa-solid fa-users"></i> CHAPTER 03</div>
+          <h2 class="section-heading">CREDIT ทีมงานผู้พัฒนา</h2>
+          <p class="section-subtitle">โครงสร้าง Portfolio สมาชิกทีมงาน ออกแบบพร้อมให้แก้ไขข้อมูล รายชื่อ และช่องทางติดต่อได้ทันที</p>
+
+          <!-- Credit Quick Navigation -->
+          <div class="credit-quick-nav">
+            <button class="credit-nav-item active" onclick="scrollToCreditCard(0)">
+              <i class="fa-solid fa-code"></i> Developer
+            </button>
+            <button class="credit-nav-item" onclick="scrollToCreditCard(1)">
+              <i class="fa-solid fa-code"></i> Developer
+            </button>
+            <button class="credit-nav-item" onclick="scrollToCreditCard(2)">
+              <i class="fa-solid fa-language"></i> Translations
+            </button>
+            <button class="credit-nav-item" onclick="scrollToCreditCard(3)">
+              <i class="fa-solid fa-spell-check"></i> Proofreader
+            </button>
+          </div>
+
+          <div class="credit-team-grid" id="credit-grid">
+
+            <!-- 1. DEVELOPER #1 -->
+            <div class="credit-card" id="sec-credit-dev">
+              <div class="credit-card-top-accent dev-accent"></div>
+              <div class="credit-card-inner">
+                <div class="credit-header">
+                  <div class="credit-avatar-frame dev-frame">
+                    <i class="fa-solid fa-code"></i>
+                  </div>
+                  <div class="credit-meta">
+                    <span class="credit-role-tag dev-tag">CORE DEVELOPER</span>
+                    <h3 class="credit-member-name">[Developer]</h3>
+                    <span class="credit-member-handle">@Pannawath</span>
+                  </div>
+                </div>
+                <div class="credit-body">
+                  <p class="credit-quote">"67676767"</p>
+                  <div class="credit-duty-title">หน้าที่</div>
+                  <ul class="credit-duty-list">
+                    <li>พัฒนาระบบ Mod Installer</li>
+                    <li>จัดการ Backend & Deployment</li>
+                  </ul>
+                  <div class="credit-tag-row">
+                    <span class="tech-tag">Installer Dev</span>
+                    <span class="tech-tag">Backend</span>
+                  </div>
+                </div>
+                <div class="credit-footer">
+                  <div class="credit-social-links">
+                    <a href="https://discord.com/users/808270554481033226" class="credit-social-btn" title="Discord"><i class="fa-brands fa-discord"></i></a>
+                    <a href="https://github.com/Pannawath" class="credit-social-btn" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. DEVELOPER #2 -->
+            <div class="credit-card">
+              <div class="credit-card-top-accent dev-accent"></div>
+              <div class="credit-card-inner">
+                <div class="credit-header">
+                  <div class="credit-avatar-frame dev-frame">
+                    <i class="fa-solid fa-code"></i>
+                  </div>
+                  <div class="credit-meta">
+                    <span class="credit-role-tag dev-tag">DEVELOPER</span>
+                    <h3 class="credit-member-name">[Developer]</h3>
+                    <span class="credit-member-handle">@pluem4898</span>
+                  </div>
+                </div>
+                <div class="credit-body">
+                  <p class="credit-quote">"ไฟล์ฟอนต์ของระบบความคิดไม่สมบูรณ์"</p>
+                  <div class="credit-duty-title">หน้าที่</div>
+                  <ul class="credit-duty-list">
+                    <li>พัฒนาเว็บไซต์ Showcase</li>
+                    <li>UI/UX Design & Frontend</li>
+                  </ul>
+                  <div class="credit-tag-row">
+                    <span class="tech-tag">Backend</span>
+                    <span class="tech-tag">UI/UX</span>
+                  </div>
+                </div>
+                <div class="credit-footer">
+                  <div class="credit-social-links">
+                    <a href="https://discord.com/users/1216739030167846986" class="credit-social-btn" title="Discord"><i class="fa-brands fa-discord"></i></a>
+                    <a href="https://github.com/pluem4898" class="credit-social-btn" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. TRANSLATIONS -->
+            <div class="credit-card" id="sec-credit-trans">
+              <div class="credit-card-top-accent trans-accent"></div>
+              <div class="credit-card-inner">
+                <div class="credit-header">
+                  <div class="credit-avatar-frame trans-frame">
+                    <i class="fa-solid fa-language"></i>
+                  </div>
+                  <div class="credit-meta">
+                    <span class="credit-role-tag trans-tag">TRANSLATOR</span>
+                    <h3 class="credit-member-name">[ทีมแปล]</h3>
+                    <span class="credit-member-handle">@stewen_m</span>
+                  </div>
+                </div>
+                <div class="credit-body">
+                  <p class="credit-quote">"ขอบคุณทุกคนที่ร่วมสนับสนุนและเล่นม็อดภาษาไทยครับ"</p>
+                  <div class="credit-duty-title">หน้าที่</div>
+                  <ul class="credit-duty-list">
+                    <li>แปลบทเนื้อเรื่องหลัก</li>
+                    <li>ถ่ายทอดบทสนทนาตัวละคร</li>
+                  </ul>
+                  <div class="credit-tag-row">
+                    <span class="tech-tag">Translation</span>
+                    <span class="tech-tag">Story</span>
+                  </div>
+                </div>
+                <div class="credit-footer">
+                  <div class="credit-social-links">
+                    <a href="https://discord.com/users/820573342536040468" class="credit-social-btn" title="Discord"><i class="fa-brands fa-discord"></i></a>
+                    <a href="#" class="credit-social-btn" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="credit-card" id="sec-credit-proof">
+              <div class="credit-card-top-accent proof-accent"></div>
+              <div class="credit-card-inner">
+                <div class="credit-header">
+                  <div class="credit-avatar-frame proof-frame">
+                    <i class="fa-solid fa-spell-check"></i>
+                  </div>
+                  <div class="credit-meta">
+                    <span class="credit-role-tag proof-tag">TRANSLATOR</span>
+                    <h3 class="credit-member-name">[ทีมแปล]</h3>
+                    <span class="credit-member-handle">@sonicboy2008</span>
+                  </div>
+                </div>
+                <div class="credit-body">
+                  <p class="credit-quote">"การเเปลที่ดีคือการเเปลที่ถูกต้องและลื่นไหล"</p>
+                  <div class="credit-duty-title">หน้าที่</div>
+                  <ul class="credit-duty-list">
+                    <li>ตรวจสอบไวยากรณ์</li>
+                    <li>เกลาบทให้ลื่นไหล</li>
+                  </ul>
+                  <div class="credit-tag-row">
+                    <span class="tech-tag">Quality Check</span>
+                    <span class="tech-tag">Editing</span>
+                  </div>
+                </div>
+                <div class="credit-footer">
+                  <div class="credit-social-links">
+                    <a href="https://discord.com/users/780803658828087346" class="credit-social-btn" title="Discord"><i class="fa-brands fa-discord"></i></a>
+                    <a href="#" class="credit-social-btn" title="Steam"><i class="fa-brands fa-steam"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- SECTION 4: DONATE -->
+        <section class="sheet-doc-section" id="sec-donate">
+          <div class="section-badge-tag"><i class="fa-solid fa-mug-hot"></i> CHAPTER 04</div>
+          <h2 class="section-heading">DONATE สนับสนุนทีมงาน</h2>
+          <p class="section-subtitle">ร่วมสนับสนุนค่าน้ำชากาแฟและค่าเซิร์ฟเวอร์ให้กับทีมงานแปลภาษาไทย</p>
+
+          <div class="donate-single-card" id="sec-donate-promptpay">
+            <div class="donate-header">
+              <div class="donate-icon-badge"><i class="fa-solid fa-mug-hot"></i></div>
+              <div>
+                <span class="donate-badge">EASYDONATE</span>
+                <h3>สนับสนุนทีมงาน</h3>
+              </div>
+            </div>
+
+            <p class="donate-description">ร่วมสนับสนุนทีมงานผ่าน EasyDonate ได้ที่นี่</p>
+
+            <a class="btn-donate-open" href="https://ezdn.app/prachkung" target="_blank" rel="noopener noreferrer">
+              <i class="fa-solid fa-heart"></i> โดเนทเลย
+            </a>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
