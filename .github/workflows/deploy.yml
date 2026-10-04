@@ -1,0 +1,38 @@
+name: Deploy Website Folder to Pages
+
+on:
+  push:
+    branches: ["main"] # จะทำงานทุกครั้งที่มีการอัปเดตโค้ดที่สาขา main
+  workflow_dispatch: # เปิดให้กดรันสคริปต์เองแบบ Manual ได้ด้วย
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Artifact from Website Folder
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # สั่งให้ระบบดึงข้อมูลจากโฟลเดอร์ Website เท่านั้นมาใช้งาน
+          path: './Website'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
