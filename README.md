@@ -2,7 +2,7 @@
 
 # Until Then - ม็อดภาษาไทย
 
-[![Version](https://img.shields.io/badge/version-v1.5.4-blue.svg?style=flat-square)](https://github.com/phkprachkung/UntilThen-Thai-Translation/releases)
+[![Version](https://img.shields.io/badge/version-v1.6.7-blue.svg?style=flat-square)](https://github.com/phkprachkung/UntilThen-Thai-Translation/releases)
 [![Progress](https://img.shields.io/badge/main%20story-100%25-brightgreen.svg?style=flat-square)](https://github.com/phkprachkung/UntilThen-Thai-Translation)
 [![DLC Progress](https://img.shields.io/badge/DLC-100%25-brightgreen.svg?style=flat-square)](https://github.com/phkprachkung/UntilThen-Thai-Translation)
 [![Platform](https://img.shields.io/badge/platform-Steam%20(PC)-lightgrey.svg?style=flat-square)](https://store.steampowered.com/app/1574820/Until_Then/)
@@ -17,14 +17,16 @@
 ---
 
 ### สถานะการแปล
-* **เนื้อเรื่องหลัก:** 100% (จะมีการแปลใหม่ในเวอร์ชันถัดๆ ไป)
+* **เนื้อเรื่องหลัก:** 100% (รีแปลใหม่ Chapter 1 สมบูรณ์แล้ว บทถัดไปอยู่ระหว่างดำเนินการ)
 * **เนื้อเรื่อง DLC:** 100% (แปลครบทั้งตอน "วันคืนถิ่น" และตอน "จุดประกาย" พร้อมฉากเครดิตภาษาไทย อยู่ระหว่างการทดสอบในเกม)
 * **เมนูและ UI:** 100% (เมนูในเกม, แอปมือถือ, ข้อความระบบ, แอปหาคู่ Matchy และ Doogle Photos Reel)
 * **ฟอนต์ภาษาไทย:** 100% (ใช้ Prompt ในบทสนทนา และ FC Iconic ในหน้าเมนู สระไม่ลอย)
 
 ---
 
-### มีอะไรใหม่ใน v1.5.4
+### มีอะไรใหม่ใน v1.6.7
+* รีแปลเนื้อเรื่องหลัก บทที่ 1 (Chapter 1 / Act 1) ใหม่ทั้งหมดเสร็จสมบูรณ์ 100% เกลาสำนวนให้เป็นธรรมชาติและเข้าถึงอารมณ์ตัวละครมากยิ่งขึ้น
+* เปลี่ยน Launcher ใหม่เป็น Tauri (Rust + TypeScript) ขนาดเล็กลงจาก 150 MB เหลือ 21 MB ติดตั้งไวขึ้นและเสถียรขึ้น
 * แปลเนื้อเรื่อง DLC บทที่ 2 ตอน "จุดประกาย" เสร็จสมบูรณ์ครบทุกฉาก (ฉาก 2/1 ถึง 2/9b)
 * แปลฉากเครดิต (Credits) ภาษาไทยเต็มรูปแบบ ทั้งเนื้อเรื่องหลักทุกบทและ DLC
 * แปลแอปหาคู่ Matchy ครบ 100% (ตัวละครทั้ง 12 คน) พร้อมแก้ไขบั๊กเกมค้าง
@@ -40,9 +42,15 @@
 > ในเนื้อเรื่อง DLC บทที่ 2 ระบบเกมต้นฉบับไม่รองรับการคลิกเมาส์ในหน้าจอมือถือและเมนู ต้องใช้ปุ่มลูกศรบนคีย์บอร์ดหรือจอยเกมในการเลือก
 
 <details>
-<summary>ประวัติการอัปเดตเวอร์ชันเก่า (v1.4.1 - v1.5.3)</summary>
+<summary>ประวัติการอัปเดตเวอร์ชันเก่า (v1.4.1 - v1.5.4)</summary>
 
 <br>
+
+**v1.5.4**
+* แปลเนื้อเรื่อง DLC บทที่ 2 ตอน "จุดประกาย" เสร็จสมบูรณ์ครบทุกฉาก
+* แปลฉากเครดิตภาษาไทยเต็มรูปแบบ ทั้งเนื้อเรื่องหลักและ DLC
+* แปลแอปหาคู่ Matchy ครบ 100% พร้อมแก้บั๊กเกมค้าง
+* ปรับปรุงฟอนต์หน้าเมนูและบทสนทนาทั้งหมด
 
 **v1.5.3 (Beta)**
 * เพิ่มระบบสลับภาษา TH/EN แบบเรียลไทม์ในเมนู F9 สำหรับผู้ทดสอบ
