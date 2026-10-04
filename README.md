@@ -10,7 +10,7 @@
 
 โปรเจกต์แปลภาษาไทยสำหรับเกม Until Then บน PC (Steam)
 
-[Discord พูดคุย / แจ้งปัญหา](https://pannawath.github.io/UntilThen-Thai-Translation/) • [Discord พูดคุย / แจ้งปัญหา](https://discord.gg/hDjNCPaCmu)
+[WEBSITE DONWLOAD](https://pannawath.github.io/UntilThen-Thai-Translation/) • [Discord พูดคุย / แจ้งปัญหา](https://discord.gg/hDjNCPaCmu)
 
 </div>
 
