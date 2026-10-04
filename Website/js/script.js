@@ -46,7 +46,7 @@
   const scrollThumb = document.getElementById('scroll-thumb');
   const versionText = document.getElementById('mod-version');
 
-  fetch('version.txt', { cache: 'no-store' })
+  fetch('https://raw.githubusercontent.com/Pannawath/UntilThen-Thai-Translation/refs/heads/main/version.txt', { cache: 'no-store' })
     .then(response => {
       if (!response.ok) {
         throw new Error(`Failed to load version.txt: ${response.status}`);
