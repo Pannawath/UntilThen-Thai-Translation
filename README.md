@@ -1,4 +1,4 @@
-
+<div align="center">
 
 # Until Then - ม็อดภาษาไทย
 
@@ -8,15 +8,15 @@
 [![Platform](https://img.shields.io/badge/platform-Steam%20(PC)-lightgrey.svg?style=flat-square)](https://store.steampowered.com/app/1574820/Until_Then/)
 [![Downloads](https://img.shields.io/github/downloads/phkprachkung/UntilThen-Thai-Translation/total?color=blueviolet&style=flat-square)](https://github.com/phkprachkung/UntilThen-Thai-Translation/releases)
 
-โปรเจกต์แปลภาษาไทยสำหรับเกม Until Then บน PC (Steam)
+โปรเจกต์แปลภาษาไทยสำหรับเกม **Until Then** บน PC (Steam)
 
-[WEBSITE DONWLOAD](https://pannawath.github.io/UntilThen-Thai-Translation/) • [Discord พูดคุย / แจ้งปัญหา](https://discord.gg/hDjNCPaCmu)
+[WEBSITE DOWNLOAD](https://pannawath.github.io/UntilThen-Thai-Translation/) • [Discord พูดคุย / แจ้งปัญหา](https://discord.gg/hDjNCPaCmu)
 
 </div>
 
 ---
 
-### สถานะการแปล
+## สถานะการแปล
 * **เนื้อเรื่องหลัก:** 100% (รีแปลใหม่ Chapter 1 สมบูรณ์แล้ว บทถัดไปอยู่ระหว่างดำเนินการ)
 * **เนื้อเรื่อง DLC:** 100% (แปลครบทั้งตอน "วันคืนถิ่น" และตอน "จุดประกาย" พร้อมฉากเครดิตภาษาไทย อยู่ระหว่างการทดสอบในเกม)
 * **เมนูและ UI:** 100% (เมนูในเกม, แอปมือถือ, ข้อความระบบ, แอปหาคู่ Matchy และ Doogle Photos Reel)
@@ -24,7 +24,7 @@
 
 ---
 
-### มีอะไรใหม่ใน v1.6.7
+## มีอะไรใหม่ใน v1.6.7
 * รีแปลเนื้อเรื่องหลัก บทที่ 1 (Chapter 1 / Act 1) ใหม่ทั้งหมดเสร็จสมบูรณ์ 100% เกลาสำนวนให้เป็นธรรมชาติและเข้าถึงอารมณ์ตัวละครมากยิ่งขึ้น
 * เปลี่ยน Launcher ใหม่เป็น Tauri (Rust + TypeScript) ขนาดเล็กลงจาก 150 MB เหลือ 21 MB ติดตั้งไวขึ้นและเสถียรขึ้น
 * แปลเนื้อเรื่อง DLC บทที่ 2 ตอน "จุดประกาย" เสร็จสมบูรณ์ครบทุกฉาก (ฉาก 2/1 ถึง 2/9b)
@@ -42,8 +42,7 @@
 > ในเนื้อเรื่อง DLC บทที่ 2 ระบบเกมต้นฉบับไม่รองรับการคลิกเมาส์ในหน้าจอมือถือและเมนู ต้องใช้ปุ่มลูกศรบนคีย์บอร์ดหรือจอยเกมในการเลือก
 
 <details>
-<summary>ประวัติการอัปเดตเวอร์ชันเก่า (v1.4.1 - v1.5.4)</summary>
-
+<summary><b>ประวัติการอัปเดตเวอร์ชันเก่า (v1.4.1 - v1.5.4)</b></summary>
 <br>
 
 **v1.5.4**
@@ -69,8 +68,6 @@
 * ขยายขนาดหน้าต่างคำเตือนตอนเริ่มเกมให้อ่านง่ายขึ้น
 * ตัดเพลง BGM ออกจากตัวติดตั้งแบบ Lite เพื่อลดขนาดไฟล์
 
-<br>
-
 **v1.4.3**
 * ปรับหน้าตาตัวติดตั้งแบบ Lite ให้ทำงานเร็วและเสถียรขึ้น
 * ระบบติดตั้ง .NET 9.0 Runtime อัตโนมัติหากเครื่องไม่มี
@@ -88,7 +85,7 @@
 
 ---
 
-### ภาพตัวอย่างในเกม
+## ภาพตัวอย่างในเกม
 
 | | |
 | :---: | :---: |
@@ -99,10 +96,11 @@
 
 ---
 
-### วิธีติดตั้งม็อด
+## วิธีติดตั้งม็อด
 
-<img width="2623" height="1493" alt="ดีไซน์ที่ยังไม่ได้ตั้งชื่อ" src="https://github.com/user-attachments/assets/56f02476-0074-40e9-b5d5-dfeb2004c55d" />
 <div align="center">
+  <img width="800" alt="Installer Preview" src="https://github.com/user-attachments/assets/56f02476-0074-40e9-b5d5-dfeb2004c55d" />
+</div>
 <br>
 
 1. ดาวน์โหลดไฟล์ `UntilThen_ThaiMod.exe` จากหน้า [Releases](https://github.com/phkprachkung/UntilThen-Thai-Translation/releases)
@@ -113,8 +111,7 @@
 *(หากต้องการเอาตัวม็อดออกและคืนค่าเกมเดิม ให้เปิดโปรแกรมนี้แล้วกด **UNINSTALL MOD**)*
 
 <details>
-<summary>วิธีติดตั้งแบบ Manual (แตกไฟล์และแพ็คด้วยตัวเอง)</summary>
-
+<summary><b>วิธีติดตั้งแบบ Manual (แตกไฟล์และแพ็คด้วยตัวเอง)</b></summary>
 <br>
 
 **สิ่งที่ต้องใช้:**
@@ -122,7 +119,7 @@
 * โฟลเดอร์ `game` จาก Repository นี้
 
 **ขั้นตอน:**
-1. เปิดโปรแกรม Godot PCK Explorer เลือกเมนู `File > Open File` แล้วเปิดไฟล์ `UntilThen.pck` ในโฟลเดอร์เกม
+1. เปิดโปรแกรม **Godot PCK Explorer** เลือกเมนู `File > Open File` แล้วเปิดไฟล์ `UntilThen.pck` ในโฟลเดอร์เกม
 2. เลือก `Extract > Extract All` แตกไฟล์เกมออกมาทั้งหมด
 3. นำโฟลเดอร์ `game` จากม็อดนี้ไปวางทับโฟลเดอร์เกมที่เพิ่งแตกออกมา (กด Replace All)
 4. ไปที่เมนู `File > Pack or Embed Folder`
@@ -136,18 +133,17 @@
 
 ---
 
-### สนับสนุนทีมงาน
+## สนับสนุนทีมงาน
 
 หากชอบผลงานและอยากช่วยค่ายาแก้ปวดหลังหรือค่าน้ำชาทีมงานแปล (**DongDib Studio**) สามารถสนับสนุนได้ที่นี่ครับ:
 
- https://easydonate.app/prachkung
+[![EasyDonate](https://img.shields.io/badge/Donate-EasyDonate-orange?style=for-the-badge&logo=buy-me-a-coffee)](https://easydonate.app/prachkung)
   
-  หรือช่วยกด <b>Star</b> ที่มุมขวาบนของโปรเจกต์นี้ เพื่อเป็นกำลังใจให้ทีมงานได้เช่นกันครับ
-</div>
+หรือช่วยกด **Star** ที่มุมขวาบนของโปรเจกต์นี้ เพื่อเป็นกำลังใจให้ทีมงานได้เช่นกันครับ
 
 ---
 
-### แจ้งปัญหา / ช่องทางติดต่อ
+## แจ้งปัญหา / ช่องทางติดต่อ
 
 * **แจ้งคำผิดหรือบั๊ก:** [GitHub Issues](https://github.com/phkprachkung/UntilThen-Thai-Translation/issues)
 * **Discord ชุมชนผู้เล่น:** [เข้าร่วม Until Then Thai Mod Community](https://discord.gg/hDjNCPaCmu)
