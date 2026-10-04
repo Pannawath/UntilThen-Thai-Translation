@@ -27,7 +27,7 @@ jobs:
       - name: Prepare site
         run: |
           mkdir _site
-          cp -R frames/. _site/
+          cp -R Website/. _site/
           cp version.txt _site/version.txt
 
       - name: Upload site artifact
