@@ -44,22 +44,72 @@
   const navAbout = document.getElementById('nav-about');
   const navDownload = document.getElementById('nav-download');
   const scrollThumb = document.getElementById('scroll-thumb');
-  const versionText = document.getElementById('mod-version');
+  const versionLabels = [
+    document.getElementById('mod-version'),
+    document.getElementById('guide-release-version'),
+    document.getElementById('guide-demo-version')
+  ].filter(Boolean);
+  const downloadExe = document.getElementById('download-exe');
 
-  fetch('https://raw.githubusercontent.com/Pannawath/UntilThen-Thai-Translation/refs/heads/main/version.txt', { cache: 'no-store' })
+  // The published Release is authoritative for the displayed version and EXE link.
+  fetch('https://api.github.com/repos/Pannawath/UntilThen-Thai-Translation/releases/latest', {
+    headers: { Accept: 'application/vnd.github+json' },
+    cache: 'no-store'
+  })
     .then(response => {
-      if (!response.ok) {
-        throw new Error(`Failed to load version.txt: ${response.status}`);
-      }
-      return response.text();
+      if (!response.ok) throw new Error(`Failed to load latest release: ${response.status}`);
+      return response.json();
     })
-    .then(version => {
-      versionText.textContent = `v${version.trim()}`;
+    .then(release => {
+      const tag = String(release.tag_name || '').trim().replace(/^v/i, '');
+      if (!tag) throw new Error('Latest release has no version tag');
+      versionLabels.forEach(label => { label.textContent = `v${tag}`; });
+
+      const assets = Array.isArray(release.assets) ? release.assets : [];
+      const exeAssets = assets.filter(asset => /\.exe$/i.test(asset.name || ''));
+      const preferred = exeAssets.find(asset => asset.name === 'UntilThen_ThaiMod.exe')
+        || exeAssets.find(asset => /ThaiMod/i.test(asset.name) && !/Lite/i.test(asset.name))
+        || (exeAssets.length === 1 ? exeAssets[0] : null);
+      if (downloadExe && preferred?.browser_download_url) {
+        downloadExe.href = preferred.browser_download_url;
+      } else if (downloadExe && release.html_url) {
+        downloadExe.href = release.html_url;
+        downloadExe.innerHTML = '<i class="fa-solid fa-arrow-up-right-from-square"></i> ดูไฟล์ดาวน์โหลด';
+      }
     })
     .catch(error => {
       console.error(error);
-      versionText.textContent = 'โหลดเวอร์ชันไม่สำเร็จ';
+      versionLabels.forEach(label => { label.textContent = 'เวอร์ชันล่าสุด'; });
+      // The existing /releases/latest/download/ URL remains the download fallback.
     });
+
+  const guideDemo = document.getElementById('guide-installer-demo');
+  if (guideDemo) {
+    const demoPath = document.getElementById('guide-demo-path');
+    const demoStatus = document.getElementById('guide-demo-status');
+    const demoStep = document.getElementById('guide-demo-step');
+    const demoMessages = {
+      browse: { number: '2', text: 'ในแอปติดตั้ง ให้กด BROWSE แล้วเลือกไฟล์ UntilThen.pck จากโฟลเดอร์เกม จากนั้นกด INSTALL', next: 'install' },
+      install: { number: '3', text: 'ในแอปติดตั้ง ให้กด INSTALL แล้วรอจนสำรองไฟล์และติดตั้งเสร็จ จากนั้นเปิดเกมแล้วไปที่ SETTINGS', next: null },
+      uninstall: { number: 'ถอนม็อด', text: 'ในแอปติดตั้ง ให้กด UNINSTALL เพื่อคืนไฟล์เกมจาก UntilThen_Backup.pck', next: null }
+    };
+    const setGuideFocus = action => {
+      guideDemo.querySelectorAll('[data-demo-action]').forEach(item => {
+        item.dataset.guideFocus = String(item.dataset.demoAction === action);
+      });
+    };
+    setGuideFocus('browse');
+    guideDemo.querySelectorAll('[data-demo-action]').forEach(button => {
+      button.addEventListener('click', () => {
+        const action = button.dataset.demoAction;
+        const message = demoMessages[action];
+        setGuideFocus(message?.next || null);
+        if (action === 'browse' && demoPath) demoPath.textContent = 'C:\\...\\steamapps\\common\\Until Then\\UntilThen.pck';
+        if (demoStatus) demoStatus.textContent = message?.text || '';
+        if (demoStep && message) demoStep.innerHTML = `<strong>${message.number}</strong> ${message.text}`;
+      });
+    });
+  }
 
   // Mouse Interaction & Parallax State
   let mouseX = 0;
@@ -281,11 +331,99 @@
     });
   };
 
+  const hashTargetMap = new Map([
+    ['guide', 'sec-guide'],
+    ['guide-install', 'sec-guide-install'],
+    ['guide-steam', 'sec-guide-steam'],
+    ['guide-launch', 'sec-guide-launch'],
+    ['guide-language', 'sec-guide-language'],
+    ['guide-uninstall', 'sec-guide-uninstall'],
+    ['fixbug', 'sec-bugs'],
+    ['fixbug-cat1', 'sec-bug-cat1'],
+    ['fixbug-cat2', 'sec-bug-cat2'],
+    ['fixbug-cat3', 'sec-bug-cat3'],
+    ['fixbug-contact', 'sec-bug-contact'],
+    ['credit', 'sec-credit'],
+    ['credit-dev', 'sec-credit-dev'],
+    ['credit-trans', 'sec-credit-trans'],
+    ['credit-proof', 'sec-credit-proof'],
+    ['donate', 'sec-donate'],
+    ['donate-promptpay', 'sec-donate-promptpay']
+  ]);
+
+  // Resolve section links, including the existing #fixbug-qN format.
+  function resolveSectionHash(hash) {
+    let fragment;
+    try {
+      fragment = decodeURIComponent(hash.replace(/^#/, '')).toLowerCase();
+    } catch {
+      return null;
+    }
+    const match = /^fixbug-q(\d+)$/.exec(fragment);
+    const targetId = match && `qa-q${match[1]}`;
+    const resolvedId = targetId || hashTargetMap.get(fragment);
+    return resolvedId && document.getElementById(resolvedId) ? resolvedId : null;
+  }
+
+  function hashForTarget(targetId) {
+    if (targetId === 'sec-guide') return 'guide';
+    if (targetId.startsWith('sec-guide-')) return targetId.replace('sec-', '');
+    if (targetId === 'sec-bugs') return 'fixbug';
+    if (targetId.startsWith('sec-bug-cat')) return targetId.replace('sec-bug-', 'fixbug-');
+    if (targetId === 'sec-bug-contact') return 'fixbug-contact';
+    if (/^qa-q\d+$/.test(targetId)) return `fixbug-${targetId.replace(/^qa-/, '')}`;
+    if (targetId === 'sec-credit') return 'credit';
+    if (targetId.startsWith('sec-credit-')) return targetId.replace('sec-', '');
+    if (targetId === 'sec-donate') return 'donate';
+    if (targetId === 'sec-donate-promptpay') return 'donate-promptpay';
+    return null;
+  }
+
+  function updateLocationHash(targetId) {
+    const fragment = hashForTarget(targetId);
+    if (!fragment || window.location.hash === `#${fragment}`) return;
+    const nextUrl = new URL(window.location.href);
+    nextUrl.hash = fragment;
+    window.history.replaceState(null, '', nextUrl);
+  }
+
+  function openSectionLink() {
+    const targetId = resolveSectionHash(window.location.hash);
+    if (!targetId || !whiteSheet) return;
+
+    isAutoNavigating = false;
+    walkQueue = [];
+    targetProgress = scrollProgress = 1.0;
+    targetSheetProgress = sheetProgress = 1.0;
+    isWhiteSheetOpen = true;
+    whiteSheet.style.transform = 'translateY(0)';
+    whiteSheet.style.pointerEvents = 'auto';
+    if (sheetTimelineNav?.classList.contains('mobile-floating')) {
+      sheetTimelineNav.classList.add('is-sheet-visible');
+    }
+
+    requestAnimationFrame(() => {
+      const targetEl = document.getElementById(targetId);
+      if (!targetEl) return;
+      document.querySelectorAll('.doc-qa-linked').forEach(card => card.classList.remove('doc-qa-linked'));
+      if (targetEl.classList.contains('doc-qa-card')) targetEl.classList.add('doc-qa-linked');
+      const targetTop = targetEl.getBoundingClientRect().top
+        - whiteSheet.getBoundingClientRect().top + whiteSheet.scrollTop - 24;
+      whiteSheet.style.scrollBehavior = 'auto';
+      whiteSheet.scrollTop = Math.max(0, targetTop);
+      requestAnimationFrame(() => { whiteSheet.style.scrollBehavior = ''; });
+      updateScrollSpy();
+    });
+  }
+
+  window.addEventListener('hashchange', openSectionLink);
+  openSectionLink();
+
   // ========================================================
   // SCROLLSPY ENGINE (Dynamic Left Sidebar Highlight on Scroll)
   // ========================================================
   function updateScrollSpy() {
-    if (!whiteSheet || !isWhiteSheetOpen) return;
+    if (!whiteSheet || whiteSheet.style.pointerEvents === 'none') return;
 
     const scrollBottomDist = whiteSheet.scrollHeight - whiteSheet.scrollTop - whiteSheet.clientHeight;
     const isAtAbsoluteBottom = scrollBottomDist <= 25;
@@ -313,6 +451,21 @@
         }
       });
     }
+
+    const hashTargets = document.querySelectorAll(
+      '#white-sheet .sheet-doc-section[id], #white-sheet .guide-card[id], #white-sheet .doc-category-block[id], #white-sheet .doc-qa-card[id], #white-sheet .credit-card[id], #white-sheet .donate-single-card[id]'
+    );
+    let currentHashTarget = null;
+    if (isAtAbsoluteBottom) {
+      currentHashTarget = 'sec-donate-promptpay';
+    } else {
+      hashTargets.forEach(target => {
+        if (target.getBoundingClientRect().top <= triggerOffset) {
+          currentHashTarget = target.id;
+        }
+      });
+    }
+    if (currentHashTarget) updateLocationHash(currentHashTarget);
 
     // Update main timeline items
     mainSections.forEach(sec => {
@@ -663,6 +816,11 @@
 
   window.goToSection = function(section) {
     buildWalkPath(section);
+  };
+
+  window.openDownloadFromGuide = function() {
+    closeWhiteSheet();
+    goToSection('download');
   };
 
   // Update Active Navigation and Screen Panels
