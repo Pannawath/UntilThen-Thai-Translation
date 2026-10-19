@@ -2,58 +2,47 @@
 
 # Until Then - ม็อดภาษาไทย
 
-[![Version](https://img.shields.io/badge/version-v1.6.7-blue.svg?style=flat-square)](https://github.com/phkprachkung/UntilThen-Thai-Translation/releases)
-[![Progress](https://img.shields.io/badge/main%20story-100%25-brightgreen.svg?style=flat-square)](https://github.com/phkprachkung/UntilThen-Thai-Translation)
-[![DLC Progress](https://img.shields.io/badge/DLC-100%25-brightgreen.svg?style=flat-square)](https://github.com/phkprachkung/UntilThen-Thai-Translation)
+[![Version](https://img.shields.io/badge/version-v2.0.3-blue.svg?style=flat-square)](https://github.com/Pannawath/UntilThen-Thai-Translation/releases)
+[![Progress](https://img.shields.io/badge/main%20story-เกลาแล้ว%2020%25-orange.svg?style=flat-square)](https://github.com/Pannawath/UntilThen-Thai-Translation)
+[![DLC Progress](https://img.shields.io/badge/DLC-เกลาแล้ว%20100%25-brightgreen.svg?style=flat-square)](https://github.com/Pannawath/UntilThen-Thai-Translation)
 [![Platform](https://img.shields.io/badge/platform-Steam%20(PC)-lightgrey.svg?style=flat-square)](https://store.steampowered.com/app/1574820/Until_Then/)
-[![Downloads](https://img.shields.io/github/downloads/phkprachkung/UntilThen-Thai-Translation/total?color=blueviolet&style=flat-square)](https://github.com/phkprachkung/UntilThen-Thai-Translation/releases)
+[![Downloads](https://img.shields.io/github/downloads/Pannawath/UntilThen-Thai-Translation/total?color=blueviolet&style=flat-square)](https://github.com/Pannawath/UntilThen-Thai-Translation/releases)
 
-โปรเจกต์แปลภาษาไทยสำหรับเกม **Until Then** บน PC (Steam)
+โปรเจกต์แปลภาษาไทยสำหรับเกม Until Then บน PC (Steam)
 
-<br>
-
-[![Website Download](https://img.shields.io/badge/WEBSITE_DOWNLOAD-2EA043?style=for-the-badge&logo=github&logoColor=white)](https://pannawath.github.io/UntilThen-Thai-Translation/)
-[![Discord](https://img.shields.io/badge/DISCORD_COMMUNITY-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/hDjNCPaCmu)
-
+[ดาวน์โหลดตัวติดตั้ง (Releases)](https://github.com/Pannawath/UntilThen-Thai-Translation/releases) • [เว็บไซต์ทางการ](https://pannawath.github.io/UntilThen-Thai-Translation/) • [Discord พูดคุย / แจ้งปัญหา](https://discord.gg/hDjNCPaCmu)
 
 </div>
 
 ---
 
-## สถานะการแปล
-* **เนื้อเรื่องหลัก:** 100% (รีแปลใหม่ Chapter 1 สมบูรณ์แล้ว บทถัดไปอยู่ระหว่างดำเนินการ)
-* **เนื้อเรื่อง DLC:** 100% (แปลครบทั้งตอน "วันคืนถิ่น" และตอน "จุดประกาย" พร้อมฉากเครดิตภาษาไทย อยู่ระหว่างการทดสอบในเกม)
+### สถานะการแปล
+* **เนื้อเรื่องหลัก:** แปลครบ 100% (เกลาบทแล้ว 20% - บทที่ 1 และ 2 เสร็จสมบูรณ์ ส่วนบทอื่นๆ อยู่ระหว่างการทยอยเกลาบทใหม่ให้สละสลวยยิ่งขึ้น)
+* **เนื้อเรื่อง DLC:** 100% (เกลาบทเสร็จสมบูรณ์ 100% ครบหมดแล้วทุกอย่าง ทั้งตอน "วันคืนถิ่น" และตอน "จุดประกาย" มินิเกม และฉากเครดิตภาษาไทย)
 * **เมนูและ UI:** 100% (เมนูในเกม, แอปมือถือ, ข้อความระบบ, แอปหาคู่ Matchy และ Doogle Photos Reel)
 * **ฟอนต์ภาษาไทย:** 100% (ใช้ Prompt ในบทสนทนา และ FC Iconic ในหน้าเมนู สระไม่ลอย)
 
 ---
 
-## มีอะไรใหม่ใน v1.6.7
-* รีแปลเนื้อเรื่องหลัก บทที่ 1 (Chapter 1 / Act 1) ใหม่ทั้งหมดเสร็จสมบูรณ์ 100% เกลาสำนวนให้เป็นธรรมชาติและเข้าถึงอารมณ์ตัวละครมากยิ่งขึ้น
-* เปลี่ยน Launcher ใหม่เป็น Tauri (Rust + TypeScript) ขนาดเล็กลงจาก 150 MB เหลือ 21 MB ติดตั้งไวขึ้นและเสถียรขึ้น
-* แปลเนื้อเรื่อง DLC บทที่ 2 ตอน "จุดประกาย" เสร็จสมบูรณ์ครบทุกฉาก (ฉาก 2/1 ถึง 2/9b)
-* แปลฉากเครดิต (Credits) ภาษาไทยเต็มรูปแบบ ทั้งเนื้อเรื่องหลักทุกบทและ DLC
-* แปลแอปหาคู่ Matchy ครบ 100% (ตัวละครทั้ง 12 คน) พร้อมแก้ไขบั๊กเกมค้าง
-* แปลแอปรูปภาพ Doogle Photos & Reel รวมถึงข้อความบรรยายภาพความทรงจำ
-* แปลมินิเกม Right Words และข้อความข้ามเวลา "หนึ่งปีต่อมา" ใน DLC
-* ปรับปรุงฟอนต์หน้าเมนูทั้งหมดเป็น FC Iconic คมชัด ขนาดใหญ่ สบายตา
-* ปรับปรุงฟอนต์บทสนทนาและกรอบความคิดในเกมเป็นฟอนต์ Prompt แท้
-* แก้ไขปัญหาภาพลายตารางสีรุ้งในฉาก 3D และเปิดอิสระการปรับแต่งกราฟิก
-* ปรับปรุงตัวติดตั้ง (Installer) ใช้ฟอนต์ FC Iconic ขนาดใหญ่ คมชัด และรองรับระบบตรวจจับ Error อัตโนมัติ
+### มีอะไรใหม่ใน v1.6.7
+* **Launcher ใหม่ (Tauri Framework):** พัฒนาขึ้นใหม่ด้วย Tauri (Rust + TypeScript) ขนาดลดลงเหลือเพียง 21 MB ติดตั้งไว เสถียร พร้อมระบบ Backup อัตโนมัติและตรวจจับโฟลเดอร์ Steam
+* **รีแปลเนื้อเรื่องหลักรอบใหม่:** ปรับปรุงและรีแปลเนื้อเรื่องหลัก บทที่ 1 (Chapter 1 / Act 1) ใหม่ทั้งหมดเสร็จสมบูรณ์ 100% สำนวนเป็นธรรมชาติ สละสลวย และเข้ากับบริบทเกม
+* **แปลเนื้อเรื่อง DLC บทที่ 2 ตอน "จุดประกาย" ครบ 100%:** ครบถ้วนทุกฉาก (ฉาก 2/1 ถึง 2/9b)
+* **แปลฉากเครดิตภาษาไทยเต็มรูปแบบ:** ครอบคลุมทั้งเนื้อเรื่องหลักทุกบทและ DLC
+* **แปลแอปและมินิเกมครบวงจร:** แอปหาคู่ Matchy ครบทั้ง 12 คน, Doogle Photos Reel, มินิเกม Right Words และข้อความข้ามเวลา "หนึ่งปีต่อมา"
+* **เลือกฉากเมนูหลักได้ 5 รูปแบบ:** ปรับเลือกได้อิสระในหน้าตั้งค่า (ห้องนอนมาร์ค, จอทีวีห้องนั่งเล่น, สุสานดอกไม้, จอดำคลาสสิก, ตามเนื้อเรื่อง)
+* **ปรับปรุงฟอนต์และการแสดงผล:** ฟอนต์เมนู FC Iconic ขนาดใหญ่ 46pt คมชัด, ฟอนต์บทสนทนา Prompt แท้ พร้อม Font Caching ไม่กิน CPU
+* **แก้ไขปัญหาภาพลายตารางสีรุ้งในฉาก 3D:** ปิด use_two_bounces บน VoxelGI และเปิดอิสระการปรับแต่งกราฟิก 100%
+* **เครื่องมือทดสอบและ DevTools:** ระบบ AutoTester F9 Telemetry Dashboard v2, Steam Achievements Manager, ThaiWordBreaker Engine และ PCK Integrity Verifier
 
 > [!NOTE]
 > **ข้อควรรู้เกี่ยวกับเนื้อเรื่อง DLC:**  
 > ในเนื้อเรื่อง DLC บทที่ 2 ระบบเกมต้นฉบับไม่รองรับการคลิกเมาส์ในหน้าจอมือถือและเมนู ต้องใช้ปุ่มลูกศรบนคีย์บอร์ดหรือจอยเกมในการเลือก
 
 <details>
-<summary><b>ประวัติการอัปเดตเวอร์ชันเก่า (v1.4.1 - v1.5.4)</b></summary>
-<br>
+<summary>ประวัติการอัปเดตเวอร์ชันเก่า (v1.4.1 - v1.5.3)</summary>
 
-**v1.5.4**
-* แปลเนื้อเรื่อง DLC บทที่ 2 ตอน "จุดประกาย" เสร็จสมบูรณ์ครบทุกฉาก
-* แปลฉากเครดิตภาษาไทยเต็มรูปแบบ ทั้งเนื้อเรื่องหลักและ DLC
-* แปลแอปหาคู่ Matchy ครบ 100% พร้อมแก้บั๊กเกมค้าง
-* ปรับปรุงฟอนต์หน้าเมนูและบทสนทนาทั้งหมด
+<br>
 
 **v1.5.3 (Beta)**
 * เพิ่มระบบสลับภาษา TH/EN แบบเรียลไทม์ในเมนู F9 สำหรับผู้ทดสอบ
@@ -72,6 +61,8 @@
 * ขยายขนาดหน้าต่างคำเตือนตอนเริ่มเกมให้อ่านง่ายขึ้น
 * ตัดเพลง BGM ออกจากตัวติดตั้งแบบ Lite เพื่อลดขนาดไฟล์
 
+<br>
+
 **v1.4.3**
 * ปรับหน้าตาตัวติดตั้งแบบ Lite ให้ทำงานเร็วและเสถียรขึ้น
 * ระบบติดตั้ง .NET 9.0 Runtime อัตโนมัติหากเครื่องไม่มี
@@ -89,7 +80,7 @@
 
 ---
 
-## ภาพตัวอย่างในเกม
+### ภาพตัวอย่างในเกม
 
 | | |
 | :---: | :---: |
@@ -100,22 +91,24 @@
 
 ---
 
-## วิธีติดตั้งม็อด
+### วิธีติดตั้งม็อด
 
 <div align="center">
-  <img width="800" alt="Installer Preview" src="https://github.com/user-attachments/assets/56f02476-0074-40e9-b5d5-dfeb2004c55d" />
+  <img width="719" src="https://github.com/user-attachments/assets/ac5d4092-469e-47a2-9c80-ba39b3166de5" />
 </div>
+
 <br>
 
-1. ดาวน์โหลดไฟล์ `UntilThen_ThaiMod.exe` จากหน้า [Releases](https://github.com/phkprachkung/UntilThen-Thai-Translation/releases)
-2. ดับเบิ้ลคลิกเปิดโปรแกรมติดตั้ง (โปรแกรมจะค้นหาโฟลเดอร์เกมใน Steam ให้อัตโนมัติ หรือกดปุ่ม **BROWSE** หากติดตั้งไว้ที่อื่น)
-3. กดปุ่ม **INSTALL MOD** รอระบบติดตั้งสักครู่
+1. ดาวน์โหลดไฟล์ตัวติดตั้งจากหน้า [Releases](https://github.com/phkprachkung/UntilThen-Thai-Translation/releases) หรือ [เว็บไซต์ทางการ](https://pannawath.github.io/UntilThen-Thai-Translation/)
+2. ดับเบิ้ลคลิกเปิดโปรแกรมติดตั้ง (โปรแกรมจะค้นหาโฟลเดอร์เกมใน Steam ให้อัตโนมัติ หรือกดปุ่มค้นหาหากติดตั้งไว้ที่อื่น)
+3. กดปุ่มติดตั้งม็อด แล้วรอระบบดำเนินการ
 4. เข้าเล่นเกมภาษาไทยผ่าน Steam ได้ทันที
 
-*(หากต้องการเอาตัวม็อดออกและคืนค่าเกมเดิม ให้เปิดโปรแกรมนี้แล้วกด **UNINSTALL MOD**)*
+*(หากต้องการเอาตัวม็อดออกและคืนค่าเกมเดิม ให้เปิดโปรแกรมนี้แล้วกดปุ่มถอนการติดตั้ง)*
 
 <details>
-<summary><b>วิธีติดตั้งแบบ Manual (แตกไฟล์และแพ็คด้วยตัวเอง)</b></summary>
+<summary>วิธีติดตั้งแบบ Manual (แตกไฟล์และแพ็คด้วยตัวเอง)</summary>
+
 <br>
 
 **สิ่งที่ต้องใช้:**
@@ -123,7 +116,7 @@
 * โฟลเดอร์ `game` จาก Repository นี้
 
 **ขั้นตอน:**
-1. เปิดโปรแกรม **Godot PCK Explorer** เลือกเมนู `File > Open File` แล้วเปิดไฟล์ `UntilThen.pck` ในโฟลเดอร์เกม
+1. เปิดโปรแกรม Godot PCK Explorer เลือกเมนู `File > Open File` แล้วเปิดไฟล์ `UntilThen.pck` ในโฟลเดอร์เกม
 2. เลือก `Extract > Extract All` แตกไฟล์เกมออกมาทั้งหมด
 3. นำโฟลเดอร์ `game` จากม็อดนี้ไปวางทับโฟลเดอร์เกมที่เพิ่งแตกออกมา (กด Replace All)
 4. ไปที่เมนู `File > Pack or Embed Folder`
@@ -137,17 +130,19 @@
 
 ---
 
-## สนับสนุนทีมงาน
+### สนับสนุนทีมงาน
 
-หากชอบผลงานและอยากช่วยค่ายาแก้ปวดหลังหรือค่าน้ำชาทีมงานแปล (**DongDib Studio**) สามารถสนับสนุนได้ที่นี่ครับ:
+หากชอบผลงานและอยากช่วยค่ายาแก้ปวดหลังหรือค่าน้ำชาทีมงานแปล (**DongDib Studio**) สามารถสแกนสนับสนุนได้ที่นี่ครับ:
 
-[![EasyDonate](https://img.shields.io/badge/Donate-EasyDonate-orange?style=for-the-badge&logo=buy-me-a-coffee)](https://easydonate.app/prachkung)
-  
-หรือช่วยกด **Star** ที่มุมขวาบนของโปรเจกต์นี้ เพื่อเป็นกำลังใจให้ทีมงานได้เช่นกันครับ
+<div align="center">
+  <img width="220" src="https://github.com/user-attachments/assets/654a21a5-876f-486a-8308-3768d5b01b40" />
+  <br><br>
+  หรือช่วยกด <b>Star</b> ที่มุมขวาบนของโปรเจกต์นี้ เพื่อเป็นกำลังใจให้ทีมงานได้เช่นกันครับ
+</div>
 
 ---
 
-## แจ้งปัญหา / ช่องทางติดต่อ
+### แจ้งปัญหา / ช่องทางติดต่อ
 
 * **แจ้งคำผิดหรือบั๊ก:** [GitHub Issues](https://github.com/phkprachkung/UntilThen-Thai-Translation/issues)
 * **Discord ชุมชนผู้เล่น:** [เข้าร่วม Until Then Thai Mod Community](https://discord.gg/hDjNCPaCmu)
