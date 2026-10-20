@@ -2,7 +2,7 @@
 
 # Until Then - ม็อดภาษาไทย
 
-[![Version](https://img.shields.io/badge/version-v1.6.7-blue.svg?style=flat-square)](https://github.com/phkprachkung/UntilThen-Thai-Translation/releases)
+[![Version](https://img.shields.io/badge/version-v2.0.3-blue.svg?style=flat-square)](https://github.com/phkprachkung/UntilThen-Thai-Translation/releases)
 [![Progress](https://img.shields.io/badge/main%20story-เกลาแล้ว%2020%25-orange.svg?style=flat-square)](https://github.com/Pannawath/UntilThen-Thai-Translation)
 [![DLC Progress](https://img.shields.io/badge/DLC-100%25-brightgreen.svg?style=flat-square)](https://github.com/phkprachkung/UntilThen-Thai-Translation)
 [![Platform](https://img.shields.io/badge/platform-Steam%20(PC)-lightgrey.svg?style=flat-square)](https://store.steampowered.com/app/1574820/Until_Then/)
